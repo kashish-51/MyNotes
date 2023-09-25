@@ -1,7 +1,8 @@
 import React, {useState} from 'react'
 import {useNavigate} from 'react-router-dom';
 
-const Signup = () => {
+const Signup = (props) => {
+  
     const [credentials, setCredentials] = useState({name:"", email: "", password: "", cpassword: ""})
     let navigate = useNavigate();
     const handelSubmit = async (e)=>{
@@ -19,11 +20,16 @@ const Signup = () => {
         const json = await response.json()
     console.log(json);
     
-   
+   if(json.success){
                                                              //save the auth token and redirect
         localStorage.setItem('token' , json.authtoken);
         navigate("/");
-    
+        props.showAlert("Account created successfully", "success");
+
+      }
+    else{
+      props.showAlert("Invalid credentials", "danger");
+    }
     }
     
     const onChange=(e)=>{
@@ -31,7 +37,9 @@ const Signup = () => {
     }
 
   return (
-    <div>
+    <div className="px-[50vh] container">
+            <h2 className="text-2xl font-bold my-5">Create an account to use myNotes</h2>
+
       <form onSubmit={handelSubmit}>
       <div className="mb-3">
     <label htmlFor="name" className="form-label">Name</label>
@@ -54,7 +62,7 @@ const Signup = () => {
     <label htmlFor="cpassword" className="form-label">Confirm Password</label>
     <input type="password" className="form-control" id="cpassword" name="cpassword" onChange={onChange} minLength={5} required/>
   </div>
-  <button type="submit" className="btn btn-primary">Submit</button>
+  <button type="submit" className="btn bg-cyan-400 text-black">Submit</button>
 </form>
     </div>
   )

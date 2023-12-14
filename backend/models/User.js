@@ -19,5 +19,5 @@ date:{
     default: Date.now           //gives the current date always
 }
 });
-const User = mongoose.model('user', UserSchema);   //in bracket first write modelname the schema
+const User = mongoose.model('user', UserSchema);   //in bracket first write modelname then schema
 module.exports = User

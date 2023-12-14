@@ -6,10 +6,9 @@ const Signup = (props) => {
     const [credentials, setCredentials] = useState({name:"", email: "", password: "", cpassword: ""})
     let navigate = useNavigate();
     const handelSubmit = async (e)=>{
-        e.preventDefault();                   //to avoid the loading of page
+        e.preventDefault();                                                //to avoid the loading of page
         const {name,email,password}= credentials;
-        const response = await fetch("http://localhost:5000/api/auth/createuser", {
-            
+        const response = await fetch("http://localhost:5000/api/auth/createuser", {   
             method: "POST", 
             headers: {
               "Content-Type": "application/json"
@@ -18,10 +17,9 @@ const Signup = (props) => {
         });
     
         const json = await response.json()
-    console.log(json);
-    
+  
    if(json.success){
-                                                             //save the auth token and redirect
+                                                                           //save the auth token and redirect
         localStorage.setItem('token' , json.authtoken);
         navigate("/");
         props.showAlert("Account created successfully", "success");

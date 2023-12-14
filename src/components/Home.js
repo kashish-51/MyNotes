@@ -9,5 +9,4 @@ const {showAlert} = props
     </>
   );
 }
-
 export default Home;

@@ -24,7 +24,7 @@ app.use(express.json())      //middleware between thunderclient and terminal
 
 //Avalable routes
 
-app.use('/api/auth', require('./routes/auth'))
+app.use('/api/auth', require('./routes/auth'))            //Use the middleware defined in the file located at './routes/auth'. Apply this middleware to any route that starts with '/api/auth'.
 app.use('/api/notes', require('./routes/notes'))
 
 

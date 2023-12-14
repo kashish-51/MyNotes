@@ -30,7 +30,7 @@ router.post('/addnote', fetchuser, [
         if (!errors.isEmpty()) {
             return res.status(400).json({ errors: errors.array() });
         }
-
+        
         const note = new Note({
             title, description, tag, user: req.user.id
         })
@@ -48,8 +48,6 @@ router.post('/addnote', fetchuser, [
 router.put('/updatenote/:id', fetchuser, async (req, res) => {
     const { title, description, tag } = req.body;
     try {
-
-
         //create a newNote object
         const newNote = {};
         if (title) { newNote.title = title };
